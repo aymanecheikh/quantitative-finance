@@ -1,0 +1,1237 @@
+-> GET /sso/Login?forwardTo=22&RL=1&ip2loc=US
+<- 200 GET /sso/Login?forwardTo=22&RL=1&ip2loc=US
+-> GET /css/bootstrap-5.2.2/bootstrap.min.css
+-> GET /css/fontawesome-6.4.2/all.min.css
+-> GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+-> GET /css/reg-am/login.min.css
+-> GET /css/bootstrap-switch-3.3.2/bootstrap-switch.min.css
+-> GET /css/ibkr/theme-ibkr-portal.min.css
+<- 200 GET /css/bootstrap-5.2.2/bootstrap.min.css
+-> GET /scripts/common/js/bootstrap-5.2.2/bootstrap.bundle.min.js
+<- 200 GET /css/bootstrap-switch-3.3.2/bootstrap-switch.min.css
+-> GET /sso/lib/xyz.bundle.min.js
+<- 200 GET /css/fontawesome-6.4.2/all.min.css
+<- 200 GET /css/ibkr/theme-ibkr-portal.min.css
+<- 200 GET /scripts/common/js/bootstrap-5.2.2/bootstrap.bundle.min.js
+<- 200 GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+<- 200 GET /css/reg-am/login.min.css
+<- 200 GET /sso/lib/xyz.bundle.min.js
+-> GET /fonts/proxima-nova/Proxima-Nova-Regular.woff2
+-> GET /fonts/fontawesome-6.4.2/webfonts/fa-brands-400.woff2
+-> GET /fonts/proxima-nova/Proxima-Nova-Semibold.woff2
+-> GET /images/common/logos/ibkr/interactive-brokers.svg
+-> GET /fonts/fontawesome-6.4.2/webfonts/fa-solid-900.woff2
+<- 200 GET /fonts/fontawesome-6.4.2/webfonts/fa-brands-400.woff2
+<- 200 GET /fonts/fontawesome-6.4.2/webfonts/fa-solid-900.woff2
+<- 200 GET /images/common/logos/ibkr/interactive-brokers.svg
+<- 200 GET /fonts/proxima-nova/Proxima-Nova-Semibold.woff2
+-> POST /sso/report
+-> POST /portal.proxy/v1/gstat/bulletins
+<- 200 GET /fonts/proxima-nova/Proxima-Nova-Regular.woff2
+<- 200 POST /portal.proxy/v1/gstat/bulletins
+-> GET /fonts/proxima-nova/proximanova-extrabold.woff2
+<- 200 GET /fonts/proxima-nova/proximanova-extrabold.woff2
+<- 200 POST /sso/report
+-> GET /images/web/favicons/home-screen-icon-192x192.png
+-> GET /images/web/favicons/home-screen-icon-128x128.png
+<- 200 GET /images/web/favicons/home-screen-icon-128x128.png
+<- 200 GET /images/web/favicons/home-screen-icon-192x192.png
+-> GET /images/common/logos/ibkr/interactive-brokers-inverse.svg
+<- 200 GET /images/common/logos/ibkr/interactive-brokers-inverse.svg
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Dispatcher
+<- 302 POST /sso/Dispatcher
+-> request: /v1/api/sso/validate?gw=1
+-> GET /v1/api/sso/validate?gw=1,200|170ms
+-> request: /v1/api/one/user
+-> request: /v1/api/ssodh/init
+-> sso GET https://api.ibkr.com/v1/api/ssodh/init
+-> GET /v1/api/one/user,200|264ms
+-> request: /v1/api/ssodh/st
+-> sso GET https://api.ibkr.com/v1/api/ssodh/st
+-> request: /sso/Authenticator?ACTION=PUBLISH_TST&RESP_TYPE=JSON&DEVICE_ID=09ac2f9f|90-E8-68-42-EB-4F
+-> sso GET https://api.ibkr.com/sso/Authenticator?ACTION=PUBLISH_TST&RESP_TYPE=JSON&DEVICE_ID=09ac2f9f|90-E8-68-42-EB-4F
+<- 200 GET https://api.ibkr.com/sso/Authenticator?ACTION=PUBLISH_TST&RESP_TYPE=JSON&DEVICE_ID=09ac2f9f|90-E8-68-42-EB-4F 0
+-> request: /v1/api/iserver/auth/status
+-> GET /v1/api/iserver/auth/status,200|281ms
+-> request: /v1/api/iserver/auth/ssodh/init
+-> POST https://api.ibkr.com/v1/api/iserver/auth/ssodh/init,200|2145ms
+-> request: /v1/api/iserver/accounts
+-> GET /v1/api/iserver/accounts,200|58ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|207ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|228ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|162ms
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/portfolio/DUN777316/positions/0
+<- 200 GET /v1/api/portfolio/DUN777316/positions/0
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|56ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|90ms
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|51ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|79ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|64ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 401 POST /v1/api/iserver/auth/ssodh/init
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 401 POST /v1/api/iserver/auth/ssodh/init
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 401 POST /v1/api/iserver/auth/ssodh/init
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 401 POST /v1/api/iserver/auth/ssodh/init
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 401 POST /v1/api/iserver/auth/ssodh/init
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 401 POST /v1/api/iserver/auth/ssodh/init
+-> GET /sso/Login?forwardTo=22&RL=1&ip2loc=US
+<- 200 GET /sso/Login?forwardTo=22&RL=1&ip2loc=US
+-> GET /css/reg-am/login.min.css
+-> GET /css/ibkr/theme-ibkr-portal.min.css
+-> GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+-> GET /scripts/common/js/bootstrap-5.2.2/bootstrap.bundle.min.js
+-> GET /sso/lib/xyz.bundle.min.js
+<- 304 GET /css/reg-am/login.min.css
+<- 304 GET /css/ibkr/theme-ibkr-portal.min.css
+<- 304 GET /sso/lib/xyz.bundle.min.js
+<- 304 GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+<- 304 GET /scripts/common/js/bootstrap-5.2.2/bootstrap.bundle.min.js
+-> POST /sso/report
+-> POST /portal.proxy/v1/gstat/bulletins
+<- 200 POST /portal.proxy/v1/gstat/bulletins
+<- 200 POST /sso/report
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Dispatcher
+<- 200 POST /sso/Dispatcher
+-> GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+-> GET /css/ibkr/theme-ibkr-portal.min.css
+-> GET /css/reg-am/login.min.css
+-> GET /scripts/common/js/bootstrap-5.2.2/bootstrap.bundle.min.js
+-> GET /sso/lib/xyz.bundle.min.js
+<- 304 GET /sso/lib/xyz.bundle.min.js
+<- 304 GET /css/ibkr/theme-ibkr-portal.min.css
+<- 304 GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+<- 304 GET /scripts/common/js/bootstrap-5.2.2/bootstrap.bundle.min.js
+<- 304 GET /css/reg-am/login.min.css
+-> POST /sso/report
+-> POST /portal.proxy/v1/gstat/bulletins
+<- 200 POST /sso/report
+<- 200 POST /portal.proxy/v1/gstat/bulletins
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Dispatcher
+<- 302 POST /sso/Dispatcher
+-> request: /v1/api/sso/validate?gw=1
+-> GET /v1/api/sso/validate?gw=1,200|174ms
+-> request: /v1/api/one/user
+-> request: /v1/api/ssodh/init
+-> sso GET https://api.ibkr.com/v1/api/ssodh/init
+-> GET /v1/api/one/user,200|110ms
+-> request: /v1/api/ssodh/st
+-> sso GET https://api.ibkr.com/v1/api/ssodh/st
+-> request: /sso/Authenticator?ACTION=PUBLISH_TST&RESP_TYPE=JSON&DEVICE_ID=1b7016b0|90-E8-68-42-EB-4F
+-> sso GET https://api.ibkr.com/sso/Authenticator?ACTION=PUBLISH_TST&RESP_TYPE=JSON&DEVICE_ID=1b7016b0|90-E8-68-42-EB-4F
+<- 200 GET https://api.ibkr.com/sso/Authenticator?ACTION=PUBLISH_TST&RESP_TYPE=JSON&DEVICE_ID=1b7016b0|90-E8-68-42-EB-4F 0
+-> request: /v1/api/iserver/auth/status
+-> GET /v1/api/iserver/auth/status,200|129ms
+-> request: /v1/api/iserver/auth/ssodh/init
+-> POST https://api.ibkr.com/v1/api/iserver/auth/ssodh/init,200|1977ms
+-> request: /v1/api/iserver/accounts
+-> GET /v1/api/iserver/accounts,200|100ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|129ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|65ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|61ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|93ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|67ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|68ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|90ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|104ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|61ms
+-> request: /sso/ping
+-> GET /sso/ping,200|133ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|89ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|75ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|96ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|67ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|71ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|110ms
+-> POST /sso/Dispatcher
+<- 200 POST /sso/Dispatcher
+-> GET /sso/lib/forge-1.3.1.all.min.js
+-> GET /sso/lib/js.cookie.min.js
+-> GET /sso/javascript/device.info.js?q=1736974371103
+-> GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+<- 200 GET /sso/lib/forge-1.3.1.all.min.js
+<- 304 GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+<- 200 GET /sso/lib/js.cookie.min.js
+<- 200 GET /sso/javascript/device.info.js?q=1736974371103
+-> POST /sso/report
+-> GET /sso/Dispatcher?hardware_info=eyJpZCI6IjkxZjhjOGRiIiwibWFjIjoiMTY6MjE6RTA6NTc6MTk6MTgifQ%3D%3D
+<- 200 POST /sso/report
+<- 302 GET /sso/Dispatcher?hardware_info=eyJpZCI6IjkxZjhjOGRiIiwibWFjIjoiMTY6MjE6RTA6NTc6MTk6MTgifQ%3D%3D
+-> request: /v1/api/sso/validate?gw=1
+-> GET /v1/api/sso/validate?gw=1,401|482ms
+-> request: /v1/api/sso/validate?gw=1
+-> GET /v1/api/sso/validate?gw=1,401|432ms
+-> request: /v1/api/sso/validate?gw=1
+-> GET /v1/api/sso/validate?gw=1,401|174ms
+-> request: /v1/api/sso/validate?gw=1
+-> GET /v1/api/sso/validate?gw=1,401|143ms
+-> GET /sso/Login?forwardTo=22&RL=1&ip2loc=US
+<- 200 GET /sso/Login?forwardTo=22&RL=1&ip2loc=US
+-> GET /css/reg-am/login.min.css
+-> GET /css/ibkr/theme-ibkr-portal.min.css
+-> GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+-> GET /scripts/common/js/bootstrap-5.2.2/bootstrap.bundle.min.js
+-> GET /sso/lib/xyz.bundle.min.js
+<- 304 GET /sso/lib/xyz.bundle.min.js
+<- 304 GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+<- 200 GET /scripts/common/js/bootstrap-5.2.2/bootstrap.bundle.min.js
+<- 304 GET /css/ibkr/theme-ibkr-portal.min.css
+<- 304 GET /css/reg-am/login.min.css
+-> POST /sso/report
+-> POST /portal.proxy/v1/gstat/bulletins
+<- 200 POST /portal.proxy/v1/gstat/bulletins
+<- 200 POST /sso/report
+-> request: /v1/api/sso/validate?gw=1
+-> GET /v1/api/sso/validate?gw=1,401|146ms
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Dispatcher
+<- 200 POST /sso/Dispatcher
+-> GET /css/reg-am/login.min.css
+-> GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+-> GET /scripts/common/js/bootstrap-5.2.2/bootstrap.bundle.min.js
+-> GET /css/ibkr/theme-ibkr-portal.min.css
+-> GET /sso/lib/xyz.bundle.min.js
+<- 304 GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+<- 304 GET /scripts/common/js/bootstrap-5.2.2/bootstrap.bundle.min.js
+<- 304 GET /sso/lib/xyz.bundle.min.js
+<- 304 GET /css/reg-am/login.min.css
+<- 304 GET /css/ibkr/theme-ibkr-portal.min.css
+-> POST /sso/report
+-> POST /portal.proxy/v1/gstat/bulletins
+<- 200 POST /portal.proxy/v1/gstat/bulletins
+<- 200 POST /sso/report
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Dispatcher
+<- 302 POST /sso/Dispatcher
+-> request: /v1/api/sso/validate?gw=1
+-> GET /v1/api/sso/validate?gw=1,200|452ms
+-> request: /v1/api/one/user
+-> request: /v1/api/ssodh/init
+-> sso GET https://api.ibkr.com/v1/api/ssodh/init
+-> GET /v1/api/one/user,200|175ms
+-> request: /v1/api/ssodh/st
+-> sso GET https://api.ibkr.com/v1/api/ssodh/st
+-> request: /sso/Authenticator?ACTION=PUBLISH_TST&RESP_TYPE=JSON&DEVICE_ID=29e3fe2c|90-E8-68-42-EB-4F
+-> sso GET https://api.ibkr.com/sso/Authenticator?ACTION=PUBLISH_TST&RESP_TYPE=JSON&DEVICE_ID=29e3fe2c|90-E8-68-42-EB-4F
+<- 200 GET https://api.ibkr.com/sso/Authenticator?ACTION=PUBLISH_TST&RESP_TYPE=JSON&DEVICE_ID=29e3fe2c|90-E8-68-42-EB-4F 0
+-> request: /v1/api/iserver/auth/status
+-> GET /v1/api/iserver/auth/status,200|76ms
+-> request: /v1/api/iserver/accounts
+-> GET /v1/api/iserver/accounts,200|78ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|58ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|83ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|96ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|98ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|120ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|55ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|76ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|127ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|83ms
+-> request: /sso/ping
+-> GET /sso/ping,200|345ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|86ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|2201ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|3077ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|60ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|258ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|142ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|124ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|48ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|60ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|78ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> request: /sso/ping
+-> GET /sso/ping,200|230ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|156ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|80ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|79ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|329ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|68ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|52ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|57ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|78ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/portfolio/DUN777316/allocation
+<- 200 GET /v1/api/portfolio/DUN777316/allocation
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|46ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|1097ms
+-> request: /sso/ping
+-> GET /sso/ping,200|364ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|74ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|74ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|102ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|97ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|150ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/portfolio/DUN777316/allocation
+<- 200 GET /v1/api/portfolio/DUN777316/allocation
+-> GET /v1/api/portfolio/DUN777316/combo/positions?nocache=True
+<- 500 GET /v1/api/portfolio/DUN777316/combo/positions?nocache=True
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|147ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|58ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/portfolio/DUN777316/allocation
+<- 200 GET /v1/api/portfolio/DUN777316/allocation
+-> GET /v1/api/portfolio/DUN777316/combo/positions?nocache=True
+<- 200 GET /v1/api/portfolio/DUN777316/combo/positions?nocache=True
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|51ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|67ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|51ms
+-> request: /sso/ping
+-> GET /sso/ping,200|404ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|79ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|183ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|48ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|62ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|48ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|68ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|97ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|49ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|76ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|125ms
+-> request: /sso/ping
+-> GET /sso/ping,200|153ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|119ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|52ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|57ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|161ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|126ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|106ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|212ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|60ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|57ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|48ms
+-> request: /sso/ping
+-> GET /sso/ping,200|353ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|51ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|68ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|287ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|49ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|50ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|54ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|131ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|206ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|148ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|50ms
+-> request: /sso/ping
+-> GET /sso/ping,200|308ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|51ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|272ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|157ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|179ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|93ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|50ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|171ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|152ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|168ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|51ms
+-> request: /sso/ping
+-> GET /sso/ping,200|247ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|86ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|116ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|54ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|203ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|118ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|67ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|187ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|199ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|190ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|53ms
+-> request: /sso/ping
+-> GET /sso/ping,200|190ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|52ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|4688ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|112ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|164ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|93ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|55ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|84ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|233ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|127ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|61ms
+-> request: /sso/ping
+-> GET /sso/ping,200|267ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|136ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|73ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|93ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|109ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|214ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|59ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|146ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|176ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|194ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|76ms
+-> request: /sso/ping
+-> GET /sso/ping,200|366ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|45ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|86ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|127ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|228ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|194ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|176ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|49ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|349ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|189ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|184ms
+-> request: /sso/ping
+-> GET /sso/ping,200|131ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|54ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|149ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|61ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|1082ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|107ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|277ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|114ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|108ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/order
+<- 400 POST /v1/api/iserver/account/DUN777316/order
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|136ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|165ms
+-> request: /sso/ping
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> GET /sso/ping,200|1530ms
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/order
+<- 400 POST /v1/api/iserver/account/DUN777316/order
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|72ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|129ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/order
+<- 400 POST /v1/api/iserver/account/DUN777316/order
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|180ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|87ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|97ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|58ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|56ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|154ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/order
+<- 400 POST /v1/api/iserver/account/DUN777316/order
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|69ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|69ms
+-> request: /sso/ping
+-> GET /sso/ping,200|250ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|97ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|130ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|5009ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|170ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/order
+<- 400 POST /v1/api/iserver/account/DUN777316/order
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|138ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/order
+<- 400 POST /v1/api/iserver/account/DUN777316/order
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|139ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|193ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|109ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|191ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|1996ms
+-> request: /sso/ping
+-> GET /sso/ping,200|133ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|180ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|138ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|60ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|998ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|181ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|78ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/order
+<- 400 POST /v1/api/iserver/account/DUN777316/order
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/order
+<- 400 POST /v1/api/iserver/account/DUN777316/order
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|70ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|146ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|54ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|134ms
+-> request: /sso/ping
+-> GET /sso/ping,200|232ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|71ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/order
+<- 400 POST /v1/api/iserver/account/DUN777316/order
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|4080ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|69ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|129ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/order
+<- 400 POST /v1/api/iserver/account/DUN777316/order
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|64ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|144ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|93ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|161ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|4676ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|212ms
+-> request: /sso/ping
+-> GET /sso/ping,200|301ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|70ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/order
+<- 400 POST /v1/api/iserver/account/DUN777316/order
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|121ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/order
+<- 400 POST /v1/api/iserver/account/DUN777316/order
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|162ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/order
+<- 400 POST /v1/api/iserver/account/DUN777316/order
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|76ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|49ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|75ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/order
+<- 400 POST /v1/api/iserver/account/DUN777316/order
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/order
+<- 400 POST /v1/api/iserver/account/DUN777316/order
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|100ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|103ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/order
+<- 400 POST /v1/api/iserver/account/DUN777316/order
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|148ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|56ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/orders
+<- 400 POST /v1/api/iserver/account/DUN777316/orders
+-> request: /sso/ping
+-> GET /sso/ping,200|266ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/orders
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|198ms
+<- 200 POST /v1/api/iserver/account/DUN777316/orders
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|164ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|172ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|181ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|265ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|106ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|78ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|170ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|187ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|130ms
+-> request: /sso/ping
+-> GET /sso/ping,200|181ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|131ms
+-> GET /sso/Login?forwardTo=22&RL=1&ip2loc=US
+<- 200 GET /sso/Login?forwardTo=22&RL=1&ip2loc=US
+-> GET /css/reg-am/login.min.css
+-> GET /css/ibkr/theme-ibkr-portal.min.css
+-> GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+-> GET /scripts/common/js/bootstrap-5.2.2/bootstrap.bundle.min.js
+-> GET /sso/lib/xyz.bundle.min.js
+<- 304 GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+<- 304 GET /css/ibkr/theme-ibkr-portal.min.css
+<- 304 GET /scripts/common/js/bootstrap-5.2.2/bootstrap.bundle.min.js
+<- 304 GET /css/reg-am/login.min.css
+<- 304 GET /sso/lib/xyz.bundle.min.js
+-> POST /sso/report
+-> POST /portal.proxy/v1/gstat/bulletins
+<- 204 POST /portal.proxy/v1/gstat/bulletins
+<- 200 POST /sso/report
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Dispatcher
+<- 200 POST /sso/Dispatcher
+-> GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+-> GET /sso/lib/xyz.bundle.min.js
+-> GET /scripts/common/js/bootstrap-5.2.2/bootstrap.bundle.min.js
+-> GET /css/reg-am/login.min.css
+-> GET /css/ibkr/theme-ibkr-portal.min.css
+<- 304 GET /css/ibkr/theme-ibkr-portal.min.css
+<- 304 GET /scripts/common/js/bootstrap-5.2.2/bootstrap.bundle.min.js
+<- 304 GET /sso/lib/xyz.bundle.min.js
+<- 304 GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+<- 304 GET /css/reg-am/login.min.css
+-> POST /sso/report
+-> POST /portal.proxy/v1/gstat/bulletins
+<- 200 POST /sso/report
+<- 204 POST /portal.proxy/v1/gstat/bulletins
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Dispatcher
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+<- 302 POST /sso/Dispatcher
+-> request: /v1/api/sso/validate?gw=1
+-> GET /v1/api/sso/validate?gw=1,200|199ms
+-> request: /v1/api/one/user
+-> request: /v1/api/ssodh/init
+-> sso GET https://api.ibkr.com/v1/api/ssodh/init
+-> GET /v1/api/one/user,200|373ms
+-> request: /v1/api/ssodh/st
+-> sso GET https://api.ibkr.com/v1/api/ssodh/st
+-> request: /sso/Authenticator?ACTION=PUBLISH_TST&RESP_TYPE=JSON&DEVICE_ID=2a489dd1|90-E8-68-42-EB-4F
+-> sso GET https://api.ibkr.com/sso/Authenticator?ACTION=PUBLISH_TST&RESP_TYPE=JSON&DEVICE_ID=2a489dd1|90-E8-68-42-EB-4F
+<- 200 GET https://api.ibkr.com/sso/Authenticator?ACTION=PUBLISH_TST&RESP_TYPE=JSON&DEVICE_ID=2a489dd1|90-E8-68-42-EB-4F 0
+-> request: /v1/api/iserver/auth/status
+-> GET /v1/api/iserver/auth/status,200|139ms
+-> request: /v1/api/iserver/auth/ssodh/init
+-> POST https://api.ibkr.com/v1/api/iserver/auth/ssodh/init,200|2162ms
+-> request: /v1/api/iserver/accounts
+-> GET /v1/api/iserver/accounts,200|116ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|202ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> GET /v1/api/portfolio/DUN777316/allocation
+<- 503 GET /v1/api/portfolio/DUN777316/allocation
+-> GET /v1/api/portfolio2/DUN777316/positions
+<- 200 GET /v1/api/portfolio2/DUN777316/positions
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|129ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> GET /v1/api/portfolio/DUN777316/allocation
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|57ms
+<- 503 GET /v1/api/portfolio/DUN777316/allocation
+-> GET /v1/api/portfolio2/DUN777316/positions
+<- 200 GET /v1/api/portfolio2/DUN777316/positions
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|167ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|64ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|83ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> GET /v1/api/portfolio2/DUN777316/positions
+<- 200 GET /v1/api/portfolio2/DUN777316/positions
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> GET /v1/api/portfolio2/DUN777316/positions
+<- 200 GET /v1/api/portfolio2/DUN777316/positions
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|188ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|3816ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> GET /v1/api/portfolio2/DUN777316/positions
+<- 200 GET /v1/api/portfolio2/DUN777316/positions
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|94ms
+-> request: /sso/ping
+-> GET /sso/ping,200|193ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|161ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> GET /v1/api/portfolio2/DUN777316/positions
+<- 200 GET /v1/api/portfolio2/DUN777316/positions
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|57ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|189ms
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/portfolio/DUN777316/positions/0
+<- 200 GET /v1/api/portfolio/DUN777316/positions/0
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|93ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> POST /v1/api/iserver/account/DUN777316/orders
+<- 200 POST /v1/api/iserver/account/DUN777316/orders
+-> GET /v1/api/portfolio2/DUN777316/positions
+<- 200 GET /v1/api/portfolio2/DUN777316/positions
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|127ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|106ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|119ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|154ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|156ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|80ms
+-> request: /sso/ping
+-> GET /sso/ping,200|275ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|191ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|210ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> GET /v1/api/iserver/account/order/status/474467663
+<- 200 GET /v1/api/iserver/account/order/status/474467663
+-> GET /v1/api/portfolio2/DUN777316/positions
+<- 200 GET /v1/api/portfolio2/DUN777316/positions
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|170ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|52ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|189ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|274ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|182ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> GET /v1/api/iserver/account/order/status/474467663
+<- 200 GET /v1/api/iserver/account/order/status/474467663
+-> GET /v1/api/portfolio2/DUN777316/positions
+<- 200 GET /v1/api/portfolio2/DUN777316/positions
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|101ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|94ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|351ms
+-> request: /sso/ping
+-> GET /sso/ping,200|214ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|184ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|76ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|57ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|69ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|60ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|2946ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|122ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|54ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|186ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|67ms
+-> request: /sso/ping
+-> GET /sso/ping,200|297ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|56ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|342ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|102ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|56ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|77ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|130ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|143ms
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|159ms
+<- 503 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> GET /sso/Login?forwardTo=22&RL=1&ip2loc=US
+<- 200 GET /sso/Login?forwardTo=22&RL=1&ip2loc=US
+-> GET /css/reg-am/login.min.css
+-> GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+-> GET /scripts/common/js/bootstrap-5.2.2/bootstrap.bundle.min.js
+-> GET /css/ibkr/theme-ibkr-portal.min.css
+-> GET /sso/lib/xyz.bundle.min.js
+<- 304 GET /css/reg-am/login.min.css
+<- 304 GET /sso/lib/xyz.bundle.min.js
+<- 304 GET /scripts/common/js/jquery-3.7.0/jquery.min.js
+<- 200 GET /scripts/common/js/bootstrap-5.2.2/bootstrap.bundle.min.js
+<- 304 GET /css/ibkr/theme-ibkr-portal.min.css
+-> GET /fonts/proxima-nova/Proxima-Nova-Regular.woff2
+-> POST /sso/report
+-> POST /portal.proxy/v1/gstat/bulletins
+<- 200 GET /fonts/proxima-nova/Proxima-Nova-Regular.woff2
+<- 204 POST /portal.proxy/v1/gstat/bulletins
+<- 200 POST /sso/report
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Authenticator
+<- 200 POST /sso/Authenticator
+-> POST /sso/Dispatcher
+<- 302 POST /sso/Dispatcher
+-> request: /v1/api/sso/validate?gw=1
+-> GET /v1/api/sso/validate?gw=1,200|161ms
+-> request: /v1/api/one/user
+-> request: /v1/api/ssodh/init
+-> sso GET https://api.ibkr.com/v1/api/ssodh/init
+-> GET /v1/api/one/user,200|68ms
+-> request: /v1/api/ssodh/st
+-> sso GET https://api.ibkr.com/v1/api/ssodh/st
+-> request: /sso/Authenticator?ACTION=PUBLISH_TST&RESP_TYPE=JSON&DEVICE_ID=22d28da0|90-E8-68-42-EB-4F
+-> sso GET https://api.ibkr.com/sso/Authenticator?ACTION=PUBLISH_TST&RESP_TYPE=JSON&DEVICE_ID=22d28da0|90-E8-68-42-EB-4F
+<- 200 GET https://api.ibkr.com/sso/Authenticator?ACTION=PUBLISH_TST&RESP_TYPE=JSON&DEVICE_ID=22d28da0|90-E8-68-42-EB-4F 0
+-> POST /v1/api/iserver/auth/ssodh/init
+<- 200 POST /v1/api/iserver/auth/ssodh/init
+-> GET /v1/api/portfolio/accounts
+<- 200 GET /v1/api/portfolio/accounts
+-> GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+<- 200 GET /v1/api/iserver/secdef/search?symbol=BTC&name=True
+-> GET /v1/api/iserver/account/order/status/474467663
+-> request: /v1/api/iserver/auth/status
+-> GET /v1/api/iserver/auth/status,200|61ms
+-> request: /v1/api/iserver/accounts
+-> GET /v1/api/iserver/accounts,200|51ms
+<- 200 GET /v1/api/iserver/account/order/status/474467663
+-> GET /v1/api/portfolio2/DUN777316/positions
+<- 200 GET /v1/api/portfolio2/DUN777316/positions
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|54ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|157ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|184ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|162ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|167ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|101ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|135ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|154ms
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|60ms
+-> request: /sso/ping
+-> request: /v1/api/tickle
+-> GET /v1/api/tickle,200|226ms
+-> request: /v1/api/tickle
+-> request: /v1/api/tickle
+-> request: /v1/api/tickle
+-> request: /v1/api/tickle
+-> request: /v1/api/tickle
+-> request: /v1/api/tickle
+-> request: /v1/api/tickle
