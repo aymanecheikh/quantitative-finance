@@ -1,6 +1,6 @@
 from ibapi.client import EClient
 from ibapi.wrapper import EWrapper
-from ibapi.contract import Contract
+from ibapi.contract import *
 from ibapi.order import Order
 
 from dotenv import load_dotenv
@@ -14,6 +14,82 @@ load_dotenv()
 class IBapi(EWrapper, EClient):
     def __init__(self):
         EClient.__init__(self, self)
+
+    def symbolSamples(
+        self,
+        reqId: int,
+        contractDescriptions: ContractDescription
+    ):
+        print("Symbol Samples. Request Id: ", reqId)
+        for contractDescription in contractDescriptions:
+            derivSecTypes = ""
+            for derivSecType in contractDescription.derivativeSecTypes:
+                derivSecTypes += " "
+                derivSecTypes += derivSecType
+                print(
+                    "Contract: conId:%s, symbol:%s,"
+                    "secType:%s primExchange:%s, "
+                    "currency:%s, derivativeSecTypes:%s, description:%s, "
+                    "issuerId:%s"
+                    %
+                    (
+                        contractDescription.contract.conId,
+                        contractDescription.contract.symbol,
+                        contractDescription.contract.secType,
+                        contractDescription.contract.primaryExchange,
+                        contractDescription.contract.currency,
+                        derivSecTypes,
+                        contractDescription.contract.description,
+                        contractDescription.contract.issuerId
+                        )
+                    )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
     def tickPrice(self, reqId, tickType, price, attrib):
         if tickType == 2 and reqId == 1:
             print('The current ask price is: ', price)
@@ -94,7 +170,6 @@ class IBapi(EWrapper, EClient):
             "Avg cost:", avgCost
         )
 
-
 def run_loop():
     app.run()
 
@@ -128,7 +203,8 @@ while True:
 
 app.reqPnL(0, os.getenv('DEMO_ACCT'), '')
 app.reqPositions()
-'''
+
+
 order = Order()
 order.action = 'SELL'
 order.totalQuantity = 0.47579184
