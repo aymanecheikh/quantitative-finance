@@ -52,6 +52,8 @@ time.sleep(1)
 # LATEST :: We have an xml file with all thescanner params. Next session I
 # will parse it and and figure out how to get a list of tickers
 
+
+
 # Once candidates are selected, we fetch historical prices, which is then
 # processed downstream
 
@@ -59,8 +61,6 @@ time.sleep(1)
 # and delayed for anything that's blocked by the market data subscription
 
 ### app.reqMatchingSymbols(0, 'NVDA')
-
-# app.reqScannerParameters()
 
 '''
 for i in range(len(contract_map)):

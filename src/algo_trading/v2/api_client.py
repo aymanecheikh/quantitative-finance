@@ -1,19 +1,47 @@
 from ibapi.client import EClient
 from ibapi.wrapper import EWrapper
+from ibapi.scanner import ScanData
 from ibapi.contract import *
 from ibapi.order import Order
 
 from dotenv import load_dotenv
+from decimal import Decimal
 import os
 import threading
 import time
-from decimal import Decimal
 load_dotenv()
 
 
 class IBapi(EWrapper, EClient):
     def __init__(self):
         EClient.__init__(self, self)
+
+
+    def scannerParameters(self, xml: str):
+        open('log/scanner.xml', 'w').write(xml)
+        print("ScannerParameters received.")
+
+    def scannerData(
+        self,
+        reqId: int,
+        rank: int,
+        contractDetails: ContractDetails,
+        distance: str,
+        benchmark: str,
+        projection: str,
+        legsStr: str
+    ):
+        print(
+            "ScannerData. ReqId:", reqId,
+            ScanData(
+                contractDetails.contract,
+                rank,
+                distance,
+                benchmark,
+                projection,
+                legsStr
+            )
+        )
 
     def symbolSamples(
         self,
@@ -45,7 +73,17 @@ class IBapi(EWrapper, EClient):
                     )
 
 
+def run_server():
+    def run_loop():
+        app.run()
 
+    app = IBapi()
+    app.connect('127.0.0.1', 4002, 0)
+
+    api_thread = threading.Thread(target=run_loop, daemon=True)
+    api_thread.start()
+    time.sleep(1)
+    return app
 
 
 
