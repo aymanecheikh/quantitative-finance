@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ScanParameterResponse>
 	<InstrumentList varName="instrumentList">
 		<Instrument>
@@ -49436,5 +49437,3 @@
 		</RangeFilter>
 	</FilterList>
 </ScanParameterResponse>
-]
-
