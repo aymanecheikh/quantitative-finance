@@ -14,6 +14,5 @@ if __name__ == '__main__':
     tagvalues.append(
         TagValue('avgVolumeAbove', '10000')
     )
-    app.reqMarketDataType(3)
 
     app.reqScannerSubscription(0, subscription, [], tagvalues)
