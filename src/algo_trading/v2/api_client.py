@@ -31,17 +31,18 @@ class IBapi(EWrapper, EClient):
         projection: str,
         legsStr: str
     ):
+        data = []
+        data.append(ScanData(rank, contractDetails.contract))
+        '''
         print(
             "ScannerData. ReqId:", reqId,
             ScanData(
                 contractDetails.contract,
-                rank,
-                distance,
-                benchmark,
-                projection,
-                legsStr
+                rank
             )
         )
+        '''
+        return data
 
     def symbolSamples(
         self,

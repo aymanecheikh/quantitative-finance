@@ -6,7 +6,6 @@ import re
 from api_client import IBapi
 filename: str = 'log/scanner.xml'
 
-
 ## Note to self:
 ## There appears to be consistency in fetching immediate root
 ## children
@@ -199,5 +198,4 @@ if __name__ == '__main__':
     # sidecar_scanner_defaults = get_sidecar_scanner_defaults()
     # advanced_scanner_defaults = get_advanced_scanner_defaults()
     filter_list = get_filter_list()
-
 
