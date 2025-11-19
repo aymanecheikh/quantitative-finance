@@ -81,6 +81,15 @@ async def main():
         return d.rank, c.symbol, gap, since_open, max_run
 
     results = await asyncio.gather(*(worker(d) for d in rows))
+    
+    # Temp
+    with open('ticker_store.txt', 'w') as text_file:
+        symbols = []
+        for index, i in enumerate(results):
+            symbols.append(results[index][1])
+        text_file.write('\n'.join(symbols))
+            
+    # End Temp
 
     for rank, sym, gap, since_open, max_run in results:
         gap_txt = f"{gap:.2f}%" if gap is not None else "n/a"
