@@ -1,4 +1,5 @@
 import asyncio
+import pandas as pd
 from ib_async import IB, ScannerSubscription, TagValue
 from ib_async.contract import Contract
 
@@ -90,8 +91,14 @@ async def main():
         text_file.write('\n'.join(symbols))
             
     # End Temp
-
+    entries = []  
     for rank, sym, gap, since_open, max_run in results:
+        entry = {}
+        entry['symbol'] = sym
+        entry['gap'] = gap
+        entry['since_open'] = since_open
+        entry['max_run'] = max_run
+        entries.append(entry)
         gap_txt = f"{gap:.2f}%" if gap is not None else "n/a"
         since_open_txt = (
             f"{since_open:.2f}%" if since_open is not None else "n/a"
@@ -105,6 +112,8 @@ async def main():
 
 
     ib.disconnect()
+    return entries
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    x = asyncio.run(main())
+    pd.DataFrame.from_dict(x).to_pickle('gapped_up_stocks.pkl')
