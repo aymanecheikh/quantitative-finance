@@ -1,5 +1,6 @@
 from ib_async import IB, Stock, util
 from bs4 import BeautifulSoup as bs
+import numpy as np
 import pandas as pd
 HOST, PORT, CLIENT_ID = '127.0.0.1', 4002, 1
 
@@ -18,6 +19,10 @@ def historical_data(stock: str):
     )
 
     df = util.df(bars)
+    #df['price_returns'] = df.volume.pct_change().dropna()
+    #df['volume_returns'] = df.volume.pct_change().dropna()
+    #df.price_returns[df.price_returns == np.inf] = 0
+    #df.volume_returns[df.volume_returns == np.inf] = 0
     print(df)
     df.to_csv(f'historical_data/{stock.symbol}.csv')
 

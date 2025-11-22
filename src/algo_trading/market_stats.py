@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
-import pandas as pd
 import numpy as np
+import pandas as pd
+from scipy import stats
 from pathlib import Path
 
 
@@ -61,9 +62,54 @@ def hollistic_scatterplots():
     ax.set_xticklabels(labels)
     plt.show()
 
+def price_returns_hypothesis_test():
+    # Standard repeatable steps
+    df = pd.DataFrame(columns=['symbol', 'price_returns', 'volume_returns'])
+    labels = [
+        path.parts[-1].partition('.')[0]
+        for path in Path('historical_data').iterdir()
+        ]
+    for label in labels[:2]:
+        df_sub = pd.read_csv(
+            f'historical_data/{label}.csv'
+        )[['date', 'close', 'volume']]
+        df_sub['symbol'] = label
+        df_sub['price_returns'] = df_sub.close.pct_change().dropna()
+        df_sub['volume_returns'] = df_sub.volume.pct_change().dropna()
+        df = (
+            pd.concat(
+                [df, df_sub[['symbol', 'price_returns', 'volume_returns']].dropna()]
+            )
+            .reset_index(drop=True)
+        )
+    # Code unique to this function
+    a = np.array(df[df.symbol == list(set(df.symbol))[0]].price_returns)
+    b = np.array(df[df.symbol == list(set(df.symbol))[1]].price_returns)
+    shorter_array = np.min([len(a), len(b)])
+    a = a[:shorter_array]
+    b = b[:shorter_array]
+    alpha = 0.05
+    t_stat, p_val = stats.ttest_rel(a, b)
+    m = np.mean(a - b)
+    s = np.std(a - b, ddof=1)
+    n = len(b)
+    t_manual = m / (s / np.sqrt(n))
+    
+    decision = "Reject" if p_val <= alpha else "Fail reject"
+    concl = "Significant difference." if decision == "Reject" else "No significant difference."
+
+    print("T:", t_stat)
+    print("P:", p_val)
+    print("T manual:", t_manual)
+    print(f"Decision: {decision} H0 at α={alpha}")
+    print("Conclusion:", concl)
+
 
 if __name__ == '__main__':
+    '''
     historical_data = Path('historical_data')
     for stock in historical_data.iterdir():
         price_volume_hists(stock)
     hollistic_scatterplots()
+    '''
+    price_returns_hypothesis_test()
