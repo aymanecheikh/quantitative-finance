@@ -2,7 +2,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from scipy import stats
+import itertools
 from pathlib import Path
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
 def price_volume_hists(stock: Path):
@@ -64,45 +67,53 @@ def hollistic_scatterplots():
 
 def price_returns_hypothesis_test():
     # Standard repeatable steps
-    df = pd.DataFrame(columns=['symbol', 'price_returns', 'volume_returns'])
     labels = [
         path.parts[-1].partition('.')[0]
         for path in Path('historical_data').iterdir()
         ]
-    for label in labels[:2]:
-        df_sub = pd.read_csv(
-            f'historical_data/{label}.csv'
-        )[['date', 'close', 'volume']]
-        df_sub['symbol'] = label
-        df_sub['price_returns'] = df_sub.close.pct_change().dropna()
-        df_sub['volume_returns'] = df_sub.volume.pct_change().dropna()
-        df = (
-            pd.concat(
-                [df, df_sub[['symbol', 'price_returns', 'volume_returns']].dropna()]
-            )
-            .reset_index(drop=True)
-        )
-    # Code unique to this function
-    a = np.array(df[df.symbol == list(set(df.symbol))[0]].price_returns)
-    b = np.array(df[df.symbol == list(set(df.symbol))[1]].price_returns)
-    shorter_array = np.min([len(a), len(b)])
-    a = a[:shorter_array]
-    b = b[:shorter_array]
-    alpha = 0.05
-    t_stat, p_val = stats.ttest_rel(a, b)
-    m = np.mean(a - b)
-    s = np.std(a - b, ddof=1)
-    n = len(b)
-    t_manual = m / (s / np.sqrt(n))
+    stock_pairs = list(itertools.combinations(labels, 2))
     
-    decision = "Reject" if p_val <= alpha else "Fail reject"
-    concl = "Significant difference." if decision == "Reject" else "No significant difference."
-
-    print("T:", t_stat)
-    print("P:", p_val)
-    print("T manual:", t_manual)
-    print(f"Decision: {decision} H0 at α={alpha}")
-    print("Conclusion:", concl)
+    p_values = []
+    for label in stock_pairs:
+        df = pd.DataFrame(columns=['symbol', 'price_returns', 'volume_returns'])
+        for pair_element in label:
+            df_sub = pd.read_csv(
+                f'historical_data/{pair_element}.csv'
+            )[['date', 'close', 'volume']]
+            df_sub['symbol'] = pair_element
+            df_sub['price_returns'] = df_sub.close.pct_change().dropna()
+            df_sub['volume_returns'] = df_sub.volume.pct_change().dropna()
+            df = (
+                pd.concat(
+                    [df, df_sub[['symbol', 'price_returns', 'volume_returns']].dropna()]
+                    )
+                .reset_index(drop=True)
+            )
+        # Code unique to this function
+        a = np.array(df[df.symbol == list(set(df.symbol))[0]].price_returns)
+        b = np.array(df[df.symbol == list(set(df.symbol))[1]].price_returns)
+        shorter_array = np.min([len(a), len(b)])
+        a = a[:shorter_array]
+        b = b[:shorter_array]
+        alpha = 0.05
+        t_stat, p_val = stats.ttest_rel(a, b)
+        m = np.mean(a - b)
+        s = np.std(a - b, ddof=1)
+        n = len(b)
+        t_manual = m / (s / np.sqrt(n))
+    
+        decision = "Reject" if p_val <= alpha else "Fail reject"
+        concl = "Significant difference." if decision == "Reject" else "No significant difference."
+        if concl == "Significant difference.":
+            print(f"For pair: {label}")
+            print("T:", t_stat)
+            print("P:", p_val)
+            print("T manual:", t_manual)
+            print(f"Decision: {decision} H0 at α={alpha}")
+            print("Conclusion:", concl)
+            print("\n-------------------------------------\n")
+        p_values.append(p_val)
+    return p_values
 
 
 if __name__ == '__main__':
@@ -112,4 +123,6 @@ if __name__ == '__main__':
         price_volume_hists(stock)
     hollistic_scatterplots()
     '''
-    price_returns_hypothesis_test()
+    stats = price_returns_hypothesis_test()
+    print('\n\n')
+    print(np.min(stats))
