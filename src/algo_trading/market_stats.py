@@ -2,7 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from scipy import stats
+from statsmodels.stats.power import TTestIndPower
 import itertools
+from math import sqrt
 from pathlib import Path
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -74,6 +76,7 @@ def price_returns_hypothesis_test():
     stock_pairs = list(itertools.combinations(labels, 2))
     
     p_values = []
+    sample_sizes_needed = []
     for label in stock_pairs:
         df = pd.DataFrame(columns=['symbol', 'price_returns', 'volume_returns'])
         for pair_element in label:
@@ -85,7 +88,12 @@ def price_returns_hypothesis_test():
             df_sub['volume_returns'] = df_sub.volume.pct_change().dropna()
             df = (
                 pd.concat(
-                    [df, df_sub[['symbol', 'price_returns', 'volume_returns']].dropna()]
+                    [
+                        df,
+                        df_sub[
+                            ['symbol', 'price_returns', 'volume_returns']
+                        ].dropna()
+                    ]
                     )
                 .reset_index(drop=True)
             )
@@ -95,24 +103,51 @@ def price_returns_hypothesis_test():
         shorter_array = np.min([len(a), len(b)])
         a = a[:shorter_array]
         b = b[:shorter_array]
+        n1, n2 = len(a), len(b)
+        s1, s2 = np.var(a), np.var(b)
+        # Cohen's d
+        s = sqrt(((n1 - 1) * s1 + (n2 - 1) * s2) / (n1 + n2 - 2))
+        u1, u2 = np.mean(a), np.mean(b)
+        d = (u1 - u2) / s
+        print(f'Effect size: {d}')
         alpha = 0.05
+        power = 0.8
+        obj = TTestIndPower()
+        n = obj.solve_power(
+            effect_size=d,
+            alpha=alpha,
+            power=power,
+            ratio=1,
+            alternative='two-sided'
+        )
+        print(f'Samples size/Number needed in each group: {n:.3f}')
+        sample_sizes_needed.append(n)
         t_stat, p_val = stats.ttest_rel(a, b)
+        p_values.append(p_val)
         m = np.mean(a - b)
         s = np.std(a - b, ddof=1)
         n = len(b)
         t_manual = m / (s / np.sqrt(n))
-    
+
+        '''
         decision = "Reject" if p_val <= alpha else "Fail reject"
-        concl = "Significant difference." if decision == "Reject" else "No significant difference."
-        if concl == "Significant difference.":
-            print(f"For pair: {label}")
-            print("T:", t_stat)
-            print("P:", p_val)
-            print("T manual:", t_manual)
-            print(f"Decision: {decision} H0 at α={alpha}")
-            print("Conclusion:", concl)
-            print("\n-------------------------------------\n")
-        p_values.append(p_val)
+        concl = (
+            "Significant difference."
+            if decision == "Reject"
+            else "No significant difference."
+        )
+        print(f"For pair: {label}")
+        print("T:", t_stat)
+        print("P:", p_val)
+        print("T manual:", t_manual)
+        print(f"Decision: {decision} H0 at α={alpha}")
+        print("Conclusion:", concl)
+        print("\n-------------------------------------\n")
+        '''
+    adjusted_p_values = stats.false_discovery_control(p_values, method="bh")
+    print(f"Minimum sample size needed: {np.min(sample_sizes_needed)}")
+    print(f"Minimum p-value: {np.min(p_values)}")
+    print(f"Minimum adjusted p-value: {np.min(adjusted_p_values)}")
     return p_values
 
 
@@ -124,5 +159,3 @@ if __name__ == '__main__':
     hollistic_scatterplots()
     '''
     stats = price_returns_hypothesis_test()
-    print('\n\n')
-    print(np.min(stats))
