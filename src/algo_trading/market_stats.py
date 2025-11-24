@@ -77,6 +77,8 @@ def price_returns_hypothesis_test():
     
     p_values = []
     sample_sizes_needed = []
+    corrcoefs = []
+    corrcoef_p_values = []
     for label in stock_pairs:
         df = pd.DataFrame(columns=['symbol', 'price_returns', 'volume_returns'])
         for pair_element in label:
@@ -103,13 +105,15 @@ def price_returns_hypothesis_test():
         shorter_array = np.min([len(a), len(b)])
         a = a[:shorter_array]
         b = b[:shorter_array]
+        # Effect Size | Cohen's d
         n1, n2 = len(a), len(b)
         s1, s2 = np.var(a), np.var(b)
-        # Cohen's d
         s = sqrt(((n1 - 1) * s1 + (n2 - 1) * s2) / (n1 + n2 - 2))
         u1, u2 = np.mean(a), np.mean(b)
         d = (u1 - u2) / s
-        print(f'Effect size: {d}')
+        # print(f'Effect size: {d}')
+        
+        # Power Analysis
         alpha = 0.05
         power = 0.8
         obj = TTestIndPower()
@@ -120,14 +124,42 @@ def price_returns_hypothesis_test():
             ratio=1,
             alternative='two-sided'
         )
-        print(f'Samples size/Number needed in each group: {n:.3f}')
+        # print(f'Samples size/Number needed in each group: {n:.3f}')
         sample_sizes_needed.append(n)
+        
+        # p-values
         t_stat, p_val = stats.ttest_rel(a, b)
         p_values.append(p_val)
         m = np.mean(a - b)
         s = np.std(a - b, ddof=1)
         n = len(b)
         t_manual = m / (s / np.sqrt(n))
+
+        # Correlation
+        pearson_corr, pearson_p = stats.pearsonr(a, b)
+        spearman_corr, spearman_p = stats.spearmanr(a, b)
+        kendalltau_corr, kendalltau_p = stats.kendalltau(a, b)
+
+        corrs = np.array([pearson_corr, spearman_corr, kendalltau_corr])
+        corr_p_values = np.array([pearson_p, spearman_p, kendalltau_p])
+        if corr_p_values < 0.05:
+            print(
+                f'Pearson\'s Correlation for {label}: {pearson_corr} '
+                f'w/ p-value of: {pearson_p}'
+            )
+            print(
+                f'Spearman Rank Correlation for {label}: {spearman_corr} '
+                f'w/ p-value of: {spearman_p}'
+            )
+            print(
+                f'Kendall Tau Correlation for {label}: {kendalltau_corr} '
+                f'w/ p-value of: {kendalltau_p}'
+            )
+            print(f'Average Correlation for {label}: {corrs.mean()}')
+            print(f'Average p-value for {label}: {corr_p_values.mean()}')
+        corrcoefs.append(corrs.mean())
+        corrcoef_p_values.append(corr_p_values.mean())
+        print()
 
         '''
         decision = "Reject" if p_val <= alpha else "Fail reject"
@@ -145,9 +177,13 @@ def price_returns_hypothesis_test():
         print("\n-------------------------------------\n")
         '''
     adjusted_p_values = stats.false_discovery_control(p_values, method="bh")
+    print(f'Max correlation: {np.min(corrcoefs)}')
+    print(f'Min correlation: {np.max(corrcoefs)}')
+    '''
     print(f"Minimum sample size needed: {np.min(sample_sizes_needed)}")
     print(f"Minimum p-value: {np.min(p_values)}")
     print(f"Minimum adjusted p-value: {np.min(adjusted_p_values)}")
+    '''
     return p_values
 
 
