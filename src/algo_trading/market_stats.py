@@ -142,21 +142,20 @@ def price_returns_hypothesis_test():
 
         corrs = np.array([pearson_corr, spearman_corr, kendalltau_corr])
         corr_p_values = np.array([pearson_p, spearman_p, kendalltau_p])
-        if corr_p_values < 0.05:
-            print(
-                f'Pearson\'s Correlation for {label}: {pearson_corr} '
-                f'w/ p-value of: {pearson_p}'
-            )
-            print(
-                f'Spearman Rank Correlation for {label}: {spearman_corr} '
-                f'w/ p-value of: {spearman_p}'
-            )
-            print(
-                f'Kendall Tau Correlation for {label}: {kendalltau_corr} '
-                f'w/ p-value of: {kendalltau_p}'
-            )
-            print(f'Average Correlation for {label}: {corrs.mean()}')
-            print(f'Average p-value for {label}: {corr_p_values.mean()}')
+        print(
+            f'Pearson\'s Correlation for {label}: {pearson_corr} '
+            f'w/ p-value of: {pearson_p}'
+        )
+        print(
+            f'Spearman Rank Correlation for {label}: {spearman_corr} '
+            f'w/ p-value of: {spearman_p}'
+        )
+        print(
+            f'Kendall Tau Correlation for {label}: {kendalltau_corr} '
+            f'w/ p-value of: {kendalltau_p}'
+        )
+        print(f'Average Correlation for {label}: {corrs.mean()}')
+        print(f'Average p-value for {label}: {corr_p_values.mean()}')
         corrcoefs.append(corrs.mean())
         corrcoef_p_values.append(corr_p_values.mean())
         print()
