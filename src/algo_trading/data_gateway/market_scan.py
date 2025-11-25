@@ -98,7 +98,7 @@ async def calc_since_open_pct(ib: IB, contract: Contract):
 async def main():
     logging.info('Connecting to broker.')
     ib = IB()
-    await ib.connectAsync(HOST, PORT, clientId=CLIENT_ID)
+    await ib.connectAsync(HOST, PORT, clientId=1)
     
     logging.info(
         'Subscribing to high open gap scanner for Major US Stocks\n'
@@ -166,7 +166,7 @@ async def main():
         entry['symbol'] = sym
         logging.info('Adding gap size to entry')
         entry['gap'] = gap
-        logging.info('Adding post gap run since opej')
+        logging.info('Adding post gap run since open')
         entry['since_open'] = since_open
         logging.info('Adding post gap run from highest point')
         entry['max_run'] = max_run
@@ -189,8 +189,15 @@ async def main():
     logging.info('Returning entries')
     return entries
 
-if __name__ == "__main__":
+
+def get_gapped_up_stocks():
     logging.info('Running pipeline')
     x = asyncio.run(main())
     logging.info('Persisiting output to pkl file')
-    pd.DataFrame.from_dict(x).to_pickle('gapped_up_stocks.pkl')
+    df = pd.DataFrame.from_dict(x)
+    df.to_pickle('gapped_up_stocks.pkl')
+    return df
+
+
+if __name__ == '__main__':
+    get_gapped_up_stocks()

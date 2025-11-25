@@ -37,45 +37,15 @@ def historical_data(stock: str):
     logging.warning('Is this the best method for persistence?')
     df.to_csv(f'historical_data/{stock.symbol}.csv')
 
-def onPendingTicker(ticker):
-    logging.info('ticker event received')
-    print(ticker)
 
-def real_time_market_data():
-    logging.warning('This data is delayed by 15 mins')
-    ib.reqMarketDataType(3)
-    logging.debug('Fetching conid')
-    ib.qualifyContracts(stock)[0]
-    logging.info('requesting real time market data')
-    market_data = (
-        ib.reqMktData(stock, '', False,False)
-    )
-    logging.info('Waiting for response from broker')
-    ib.pendingTickersEvent += onPendingTicker
-
-def fundamental_data():
-    logging.info('Requesting fundamental data on stock')
-    fundamentals = ib.reqFundamentalData(
-        stock, 'ReportSnapshot'
-    )
-    logging.info('Parsing xml response')
-    content = bs(fundamentals, 'xml')
-    logging.info('Finding all fundamental ratios')
-    logging.warning(
-        'You must eventually expand this towards building a full '
-        'fundamental profile of the stock and find a way to persist it'
-    )
-    ratios = content.find_all('Ratio')
-    logging.info('Printing all fundamental ratios')
-    for ratio in ratios:
-        print(ratio['FieldName'])
-        print(ratio.text)
-
-
-if __name__ == '__main__':
+def get_historical_data():
+    # Remember to swap this out for param in pipelines.py
     df = pd.read_pickle('gapped_up_stocks.pkl')
-
     for ticker in df['symbol']:
         print(ticker)
         stock = Stock(ticker, 'SMART', 'USD')
         historical_data(stock)
+
+
+if __name__ == '__main__':
+    get_historical_data()

@@ -1,5 +1,6 @@
 import logging, logger
 
+from ib_async import IB, Stock
 
 from constants import HOST, PORT, CLIENT_ID
 
@@ -12,7 +13,8 @@ def onPendingTicker(ticker):
     logging.info('ticker event received')
     print(ticker)
 
-def real_time_market_data():
+def real_time_market_data(stock: str):
+    stock = Stock(stock, 'SMART', 'USD')
     logging.warning('This data is delayed by 15 mins')
     ib.reqMarketDataType(3)
     logging.debug('Fetching conid')
@@ -23,3 +25,9 @@ def real_time_market_data():
     )
     logging.info('Waiting for response from broker')
     ib.pendingTickersEvent += onPendingTicker
+    logging.info('Streaming prices')
+    ib.run()
+
+
+if __name__ == '__main__':
+    real_time_market_data('ALB')
