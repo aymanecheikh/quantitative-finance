@@ -35,6 +35,8 @@ def historical_data(stock: str):
     print(df)
     logging.info('Persisting dataframe to disk as csv')
     logging.warning('Is this the best method for persistence?')
+    if df is None:
+        return None
     df.to_csv(f'historical_data/{stock.symbol}.csv')
 
 

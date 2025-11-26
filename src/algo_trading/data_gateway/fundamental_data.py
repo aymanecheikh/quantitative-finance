@@ -10,7 +10,7 @@ from constants import Fundamentals, HOST, PORT, CLIENT_ID
 
 logging.info('Connecting to broker')
 ib = IB()
-ib.connect(HOST, PORT, clientId=CLIENT_ID)
+ib.connect(HOST, PORT, clientId=2)
 
 
 def fetch_stock_details(stock: str):
@@ -20,6 +20,7 @@ def fetch_stock_details(stock: str):
         'constants?'
     )
     return Stock(stock, 'SMART', 'USD')
+
 
 def financial_summary(stock: str):
     logging.info('Requesting financial summary on stock')
@@ -49,6 +50,7 @@ def company_financial_overview(stock: str):
     )
     logging.info('Parsing xml response')
     content = bs(fundamentals, 'xml')
+    return content
     logging.info('Finding all fundamental ratios')
     logging.warning(
         'You must eventually expand this towards building a full '
@@ -61,6 +63,9 @@ def company_financial_overview(stock: str):
         print(ratio.text)
 
 def company_financial_statements(stock: str):
+    """
+    Company data is unavailable
+    """
     logging.info('Requesting financial statements on stock')
     fundamentals = ib.reqFundamentalData(
         fetch_stock_details(stock),
@@ -70,4 +75,4 @@ def company_financial_statements(stock: str):
 
 
 if __name__ == '__main__':
-    print(company_financial_statements('AAPL'))
+    company_financial_overview('AAPL')
