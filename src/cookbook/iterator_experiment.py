@@ -8,8 +8,8 @@ class SequenceIterator:
     
     def __next__(self):
         if self._index < len(self._sequence):
-            item = self._sequence[self._index]
+            square = self._sequence[self._index] ** 2
             self._index += 1
-            return item
+            return square
         else:
             raise StopIteration
