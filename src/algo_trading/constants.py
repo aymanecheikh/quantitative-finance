@@ -18,3 +18,11 @@ class Fundamentals(Enum):
     FINANCIAL_STATEMENTS = "ReportsFinStatements"
     ANALYST_ESTIMATES = "RESC"
     COMPANY_CALENDAR = "CalendarReport"
+
+
+class KubeFlowConstants:
+    BASE_IMAGE: Final = "us-docker.pkg.dev/deeplearning-platform-release/gcr.io/tf2-cpu.2-17.py310"
+
+
+class MLModels(Enum):
+    SMA_LINEAR_REGRESSION_MODEL = "sma-linear-regression"

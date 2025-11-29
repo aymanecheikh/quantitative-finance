@@ -4,8 +4,6 @@ from itertools import combinations
 from pathlib import Path
 
 
-
-
 def stock_pairs(path: Path) -> tuple[str, str]:
     return combinations(
         (p.parts[-1].partition('.')[0] for p in directory.iterdir()), 2
