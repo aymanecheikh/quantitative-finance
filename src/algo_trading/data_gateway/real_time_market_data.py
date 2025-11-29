@@ -4,6 +4,7 @@ from ib_async import IB, Stock
 
 from constants import HOST, PORT, CLIENT_ID
 
+
 logging.info('Connecting to broker')
 ib = IB()
 ib.connect(HOST, PORT, clientId=CLIENT_ID)
