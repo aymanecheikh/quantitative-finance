@@ -1,15 +1,15 @@
 from kfp.v2.dsl import component, Output, Dataset
-from ....constants import KubeFlowConstants as kfc
+from constants import MLModels as mlm
 
 
-@component(base_image=kfc.BASE_IMAGE)
+@component(base_image=mlm.BASE_IMAGE)
 def preprocess_data(
     data_bucket: str,
     data_folder: str,
     train_file: str,
-    test_file: str,
     processed_train_data: Output[Dataset],
     processed_test_data: Output[Dataset],
+    train_labels_data: Output[Dataset],
     test_labels_data: Output[Dataset]
 ):
     from google.cloud import storage
@@ -31,10 +31,10 @@ def preprocess_data(
         _df = pd.read_csv(io.StringIO(csv_content))
         return _df
     
-    def data_preprocessing(raw: DataFrame) -> tuple[DataFrame, Series]:
+    def data_preprocessing(raw: DataFrame):
         raw.dropna(inplace=True)
         raw['SMA_20'] = raw.close.rolling(window=20).mean()
-        raw['SMA_50'] = raw.close.rolling(window=20).mean()
+        raw['SMA_50'] = raw.close.rolling(window=50).mean()
         raw.dropna(inplace=True)
         X = raw[['open', 'high', 'low', 'volume', 'SMA_20', 'SMA_50']]
         y = raw.close
@@ -50,5 +50,5 @@ def preprocess_data(
 
     joblib.dump(X_train, processed_train_data.path)
     joblib.dump(X_test, processed_test_data.path)
-    joblib.dump(y_train, test_labels_data.path)
+    joblib.dump(y_train, train_labels_data.path)
     joblib.dump(y_test, test_labels_data.path)

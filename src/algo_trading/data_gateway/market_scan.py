@@ -2,7 +2,7 @@ import asyncio
 import pandas as pd
 from ib_async import IB, ScannerSubscription, TagValue
 from ib_async.contract import Contract
-from constants import *
+from constants import IBAPI
 import logging, logger
 
 
@@ -98,7 +98,7 @@ async def calc_since_open_pct(ib: IB, contract: Contract):
 async def main():
     logging.info('Connecting to broker.')
     ib = IB()
-    await ib.connectAsync(HOST, PORT, clientId=1)
+    await ib.connectAsync(IBAPI.HOST, IBAPI.PORT, clientId=IBAPI.CLIENT_ID)
     
     logging.info(
         'Subscribing to high open gap scanner for Major US Stocks\n'

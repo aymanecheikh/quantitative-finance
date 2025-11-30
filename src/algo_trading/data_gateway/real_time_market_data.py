@@ -2,12 +2,12 @@ import logging, logger
 
 from ib_async import IB, Stock
 
-from constants import HOST, PORT, CLIENT_ID
+from constants import IBAPI
 
 
 logging.info('Connecting to broker')
 ib = IB()
-ib.connect(HOST, PORT, clientId=CLIENT_ID)
+ib.connect(IBAPI.HOST, IBAPI.PORT, clientId=IBAPI.CLIENT_ID)
 
 
 def onPendingTicker(ticker):

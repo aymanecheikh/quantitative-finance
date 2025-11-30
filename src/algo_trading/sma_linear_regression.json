@@ -1,0 +1,384 @@
+{
+  "components": {
+    "comp-evaluate-model": {
+      "executorLabel": "exec-evaluate-model",
+      "inputDefinitions": {
+        "artifacts": {
+          "model": {
+            "artifactType": {
+              "schemaTitle": "system.Model",
+              "schemaVersion": "0.0.1"
+            }
+          },
+          "processed_test_data": {
+            "artifactType": {
+              "schemaTitle": "system.Dataset",
+              "schemaVersion": "0.0.1"
+            }
+          },
+          "test_labels_data": {
+            "artifactType": {
+              "schemaTitle": "system.Dataset",
+              "schemaVersion": "0.0.1"
+            }
+          }
+        }
+      },
+      "outputDefinitions": {
+        "artifacts": {
+          "evaluation_metrics": {
+            "artifactType": {
+              "schemaTitle": "system.Artifact",
+              "schemaVersion": "0.0.1"
+            }
+          }
+        }
+      }
+    },
+    "comp-preprocess-data": {
+      "executorLabel": "exec-preprocess-data",
+      "inputDefinitions": {
+        "parameters": {
+          "data_bucket": {
+            "parameterType": "STRING"
+          },
+          "data_folder": {
+            "parameterType": "STRING"
+          },
+          "train_file": {
+            "parameterType": "STRING"
+          }
+        }
+      },
+      "outputDefinitions": {
+        "artifacts": {
+          "processed_test_data": {
+            "artifactType": {
+              "schemaTitle": "system.Dataset",
+              "schemaVersion": "0.0.1"
+            }
+          },
+          "processed_train_data": {
+            "artifactType": {
+              "schemaTitle": "system.Dataset",
+              "schemaVersion": "0.0.1"
+            }
+          },
+          "test_labels_data": {
+            "artifactType": {
+              "schemaTitle": "system.Dataset",
+              "schemaVersion": "0.0.1"
+            }
+          },
+          "train_labels_data": {
+            "artifactType": {
+              "schemaTitle": "system.Dataset",
+              "schemaVersion": "0.0.1"
+            }
+          }
+        }
+      }
+    },
+    "comp-register-model": {
+      "executorLabel": "exec-register-model",
+      "inputDefinitions": {
+        "artifacts": {
+          "metrics": {
+            "artifactType": {
+              "schemaTitle": "system.Artifact",
+              "schemaVersion": "0.0.1"
+            }
+          },
+          "model": {
+            "artifactType": {
+              "schemaTitle": "system.Model",
+              "schemaVersion": "0.0.1"
+            }
+          }
+        },
+        "parameters": {
+          "location": {
+            "parameterType": "STRING"
+          },
+          "project": {
+            "parameterType": "STRING"
+          }
+        }
+      }
+    },
+    "comp-train-model": {
+      "executorLabel": "exec-train-model",
+      "inputDefinitions": {
+        "artifacts": {
+          "preprocessed_train_data": {
+            "artifactType": {
+              "schemaTitle": "system.Dataset",
+              "schemaVersion": "0.0.1"
+            }
+          },
+          "train_labels_data": {
+            "artifactType": {
+              "schemaTitle": "system.Dataset",
+              "schemaVersion": "0.0.1"
+            }
+          }
+        }
+      },
+      "outputDefinitions": {
+        "artifacts": {
+          "model": {
+            "artifactType": {
+              "schemaTitle": "system.Model",
+              "schemaVersion": "0.0.1"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultPipelineRoot": "gs://historical-market-data/sma-market-data-pipeline",
+  "deploymentSpec": {
+    "executors": {
+      "exec-evaluate-model": {
+        "container": {
+          "args": [
+            "--executor_input",
+            "{{$}}",
+            "--function_to_execute",
+            "evaluate_model"
+          ],
+          "command": [
+            "sh",
+            "-c",
+            "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet --no-warn-script-location 'kfp==2.4.0' '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"$0\" \"$@\"\n",
+            "sh",
+            "-ec",
+            "program_path=$(mktemp -d)\n\nprintf \"%s\" \"$0\" > \"$program_path/ephemeral_component.py\"\n_KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         \"$program_path/ephemeral_component.py\"                         \"$@\"\n",
+            "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import *\n\ndef evaluate_model(\n    processed_test_data: Input[Dataset],\n    test_labels_data: Input[Dataset],\n    model: Input[Model],\n    evaluation_metrics: Output[Artifact],\n):\n    import joblib\n    from sklearn.metrics import mean_squared_error, r2_score\n    import json\n    import os\n\n\n    X_test = joblib.load(processed_test_data.path)\n    y_test = joblib.load(test_labels_data.path)\n\n\n    model_path = os.path.join(model.path, \"model\")\n    if not os.path.exists(model_path):\n        raise FileNotFoundError(f\"No model found at {model_path}\")\n\n    _model = joblib.load(model_path)\n\n\n    y_pred = _model.predict(X_test)\n    mse = mean_squared_error(y_test, y_pred)\n    r2 = r2_score(y_test, y_pred)\n\n\n    os.makedirs(evaluation_metrics.path, exist_ok=True)\n    metrics_path = os.path.join(evaluation_metrics.path, \"metrics.json\")\n\n    metrics = {\"mse\": mse, \"r2\": r2}\n\n    with open(metrics_path, \"w\") as f:\n        json.dump(metrics, f)\n\n    print(f\"Saved evaluation metrics to: {metrics_path}\")\n\n"
+          ],
+          "image": "us-docker.pkg.dev/deeplearning-platform-release/gcr.io/sklearn-cpu"
+        }
+      },
+      "exec-preprocess-data": {
+        "container": {
+          "args": [
+            "--executor_input",
+            "{{$}}",
+            "--function_to_execute",
+            "preprocess_data"
+          ],
+          "command": [
+            "sh",
+            "-c",
+            "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet --no-warn-script-location 'kfp==2.4.0' '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"$0\" \"$@\"\n",
+            "sh",
+            "-ec",
+            "program_path=$(mktemp -d)\n\nprintf \"%s\" \"$0\" > \"$program_path/ephemeral_component.py\"\n_KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         \"$program_path/ephemeral_component.py\"                         \"$@\"\n",
+            "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import *\n\ndef preprocess_data(\n    data_bucket: str,\n    data_folder: str,\n    train_file: str,\n    processed_train_data: Output[Dataset],\n    processed_test_data: Output[Dataset],\n    train_labels_data: Output[Dataset],\n    test_labels_data: Output[Dataset]\n):\n    from google.cloud import storage\n    from pandas import DataFrame, Series\n    import pandas as pd\n    from sklearn.model_selection import train_test_split\n    import joblib\n    import io\n\n\n    client = storage.Client()\n    bucket = client.bucket(data_bucket)\n\n\n    def read_data(bucket, data_folder, data_file) -> DataFrame:\n        blob_path = f\"{data_folder}/{data_file}\"\n        blob = bucket.blob(blob_path)\n        csv_content = blob.download_as_text()\n        _df = pd.read_csv(io.StringIO(csv_content))\n        return _df\n\n    def data_preprocessing(raw: DataFrame):\n        raw.dropna(inplace=True)\n        raw['SMA_20'] = raw.close.rolling(window=20).mean()\n        raw['SMA_50'] = raw.close.rolling(window=50).mean()\n        raw.dropna(inplace=True)\n        X = raw[['open', 'high', 'low', 'volume', 'SMA_20', 'SMA_50']]\n        y = raw.close\n        return X, y\n\n\n    data_df = read_data(bucket, data_folder, train_file)\n    X, y = data_preprocessing(data_df)\n    X_train, X_test, y_train, y_test = train_test_split(\n        X, y, test_size=0.2, random_state=42\n    )\n\n\n    joblib.dump(X_train, processed_train_data.path)\n    joblib.dump(X_test, processed_test_data.path)\n    joblib.dump(y_train, train_labels_data.path)\n    joblib.dump(y_test, test_labels_data.path)\n\n"
+          ],
+          "image": "us-docker.pkg.dev/deeplearning-platform-release/gcr.io/sklearn-cpu"
+        }
+      },
+      "exec-register-model": {
+        "container": {
+          "args": [
+            "--executor_input",
+            "{{$}}",
+            "--function_to_execute",
+            "register_model"
+          ],
+          "command": [
+            "sh",
+            "-c",
+            "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet --no-warn-script-location 'kfp==2.4.0' '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"$0\" \"$@\"\n",
+            "sh",
+            "-ec",
+            "program_path=$(mktemp -d)\n\nprintf \"%s\" \"$0\" > \"$program_path/ephemeral_component.py\"\n_KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         \"$program_path/ephemeral_component.py\"                         \"$@\"\n",
+            "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import *\n\ndef register_model(\n    project: str,\n    location: str,\n    model: Input[Model],\n    metrics: Input[Artifact],\n):\n    import os\n    import json\n    from google.cloud import aiplatform\n\n    aiplatform.init(project=project, location=location)\n\n    metrics_path = os.path.join(metrics.path, \"metrics.json\")\n    if not os.path.exists(metrics_path):\n        raise FileNotFoundError(f\"No metrics.json found at {metrics_path}\")\n\n    with open(metrics_path, \"r\") as f:\n        evaluation_metrics = json.load(f)\n\n    model_file = os.path.join(model.path, \"model\")\n    if not os.path.exists(model_file):\n        raise FileNotFoundError(f\"No model file found at {model_file}\")\n\n    labels = {\n        \"model_type\": \"linear_regression\",\n    }\n    print(f\"Labels: {labels}\")\n\n    model_display_name = \"sma-linear-regression\"\n\n    models = aiplatform.Model.list(\n        filter=f'display_name=\"{model_display_name}\"'\n    )\n\n    parent_model = models[0].resource_name if models else None\n    if parent_model:\n        print(f\"Parent Model Resource Name: {parent_model}\")\n    else:\n        print(\"No existing model found with the specified display name\")\n\n    uploaded_model: aiplatform.Model = aiplatform.Model.upload(\n        artifact_uri=model.uri,\n        display_name=model_display_name,\n        parent_model=parent_model,\n        serving_container_image_uri=\"europe-docker.pkg.dev/vertex-ai/training/sklearn-cpu.1-6:latest\",\n        labels=labels,\n    )\n\n    print(\"Model uploaded successfully\")\n\n    beautified_json = json.dumps(evaluation_metrics, indent=4)\n    print(beautified_json)\n\n    uploaded_model.update(\n        description=f\"SMA Linear Regression: Evaluation Metrics:\\n{beautified_json}\"\n    )\n\n    print(f\"Model registered with display name '{model_display_name}'\")\n    print(f\"Model registered with ID: {uploaded_model.resource_name}\")\n    print(f\"Evaluation metrics: {evaluation_metrics}\")\n\n"
+          ],
+          "image": "us-docker.pkg.dev/deeplearning-platform-release/gcr.io/sklearn-cpu"
+        }
+      },
+      "exec-train-model": {
+        "container": {
+          "args": [
+            "--executor_input",
+            "{{$}}",
+            "--function_to_execute",
+            "train_model"
+          ],
+          "command": [
+            "sh",
+            "-c",
+            "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip || python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1 python3 -m pip install --quiet --no-warn-script-location 'kfp==2.4.0' '--no-deps' 'typing-extensions>=3.7.4,<5; python_version<\"3.9\"' && \"$0\" \"$@\"\n",
+            "sh",
+            "-ec",
+            "program_path=$(mktemp -d)\n\nprintf \"%s\" \"$0\" > \"$program_path/ephemeral_component.py\"\n_KFP_RUNTIME=true python3 -m kfp.dsl.executor_main                         --component_module_path                         \"$program_path/ephemeral_component.py\"                         \"$@\"\n",
+            "\nimport kfp\nfrom kfp import dsl\nfrom kfp.dsl import *\nfrom typing import *\n\ndef train_model(\n    preprocessed_train_data: Input[Dataset],\n    train_labels_data: Input[Dataset],\n    model: Output[Model]\n):\n    import pandas as pd\n    import joblib\n    from sklearn.linear_model import LinearRegression\n    import os\n\n\n    X_train = joblib.load(preprocessed_train_data.path)\n    y_train = joblib.load(train_labels_data.path)\n\n\n    def define_model():\n        _model = LinearRegression()\n        return _model\n\n    def train_model(_model, X_train, y_train):\n        history = _model.fit(X_train, y_train)\n        return _model, history\n\n\n    _model = define_model()\n    _model, history = train_model(_model, X_train, y_train)\n\n\n    os.makedirs(model.path, exist_ok=True)    \n    save_model_path = os.path.join(model.path, \"model\")\n    joblib.dump(_model, save_model_path)\n    print(f\"Model saved to: {save_model_path}\")\n\n"
+          ],
+          "image": "us-docker.pkg.dev/deeplearning-platform-release/gcr.io/sklearn-cpu"
+        }
+      }
+    }
+  },
+  "pipelineInfo": {
+    "name": "sma-linear-regression"
+  },
+  "root": {
+    "dag": {
+      "tasks": {
+        "evaluate-model": {
+          "cachingOptions": {
+            "enableCache": true
+          },
+          "componentRef": {
+            "name": "comp-evaluate-model"
+          },
+          "dependentTasks": [
+            "preprocess-data",
+            "train-model"
+          ],
+          "inputs": {
+            "artifacts": {
+              "model": {
+                "taskOutputArtifact": {
+                  "outputArtifactKey": "model",
+                  "producerTask": "train-model"
+                }
+              },
+              "processed_test_data": {
+                "taskOutputArtifact": {
+                  "outputArtifactKey": "processed_test_data",
+                  "producerTask": "preprocess-data"
+                }
+              },
+              "test_labels_data": {
+                "taskOutputArtifact": {
+                  "outputArtifactKey": "test_labels_data",
+                  "producerTask": "preprocess-data"
+                }
+              }
+            }
+          },
+          "taskInfo": {
+            "name": "evaluate-model"
+          }
+        },
+        "preprocess-data": {
+          "cachingOptions": {
+            "enableCache": true
+          },
+          "componentRef": {
+            "name": "comp-preprocess-data"
+          },
+          "inputs": {
+            "parameters": {
+              "data_bucket": {
+                "componentInputParameter": "data_bucket"
+              },
+              "data_folder": {
+                "componentInputParameter": "data_folder"
+              },
+              "train_file": {
+                "componentInputParameter": "train_file"
+              }
+            }
+          },
+          "taskInfo": {
+            "name": "preprocess-data"
+          }
+        },
+        "register-model": {
+          "cachingOptions": {
+            "enableCache": true
+          },
+          "componentRef": {
+            "name": "comp-register-model"
+          },
+          "dependentTasks": [
+            "evaluate-model",
+            "train-model"
+          ],
+          "inputs": {
+            "artifacts": {
+              "metrics": {
+                "taskOutputArtifact": {
+                  "outputArtifactKey": "evaluation_metrics",
+                  "producerTask": "evaluate-model"
+                }
+              },
+              "model": {
+                "taskOutputArtifact": {
+                  "outputArtifactKey": "model",
+                  "producerTask": "train-model"
+                }
+              }
+            },
+            "parameters": {
+              "location": {
+                "componentInputParameter": "location"
+              },
+              "project": {
+                "componentInputParameter": "project"
+              }
+            }
+          },
+          "taskInfo": {
+            "name": "register-model"
+          }
+        },
+        "train-model": {
+          "cachingOptions": {
+            "enableCache": true
+          },
+          "componentRef": {
+            "name": "comp-train-model"
+          },
+          "dependentTasks": [
+            "preprocess-data"
+          ],
+          "inputs": {
+            "artifacts": {
+              "preprocessed_train_data": {
+                "taskOutputArtifact": {
+                  "outputArtifactKey": "processed_train_data",
+                  "producerTask": "preprocess-data"
+                }
+              },
+              "train_labels_data": {
+                "taskOutputArtifact": {
+                  "outputArtifactKey": "train_labels_data",
+                  "producerTask": "preprocess-data"
+                }
+              }
+            }
+          },
+          "taskInfo": {
+            "name": "train-model"
+          }
+        }
+      }
+    },
+    "inputDefinitions": {
+      "parameters": {
+        "data_bucket": {
+          "parameterType": "STRING"
+        },
+        "data_folder": {
+          "parameterType": "STRING"
+        },
+        "location": {
+          "parameterType": "STRING"
+        },
+        "project": {
+          "parameterType": "STRING"
+        },
+        "train_file": {
+          "parameterType": "STRING"
+        }
+      }
+    }
+  },
+  "schemaVersion": "2.1.0",
+  "sdkVersion": "kfp-2.4.0"
+}

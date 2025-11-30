@@ -5,12 +5,12 @@ logging.info('Importing dependencies for fundamental data fetching')
 from bs4 import BeautifulSoup as bs
 from ib_async import IB, Stock
 
-from constants import Fundamentals, HOST, PORT, CLIENT_ID
+from constants import Fundamentals, IBAPI
 
 
 logging.info('Connecting to broker')
 ib = IB()
-ib.connect(HOST, PORT, clientId=2)
+ib.connect(IBAPI.HOST, IBAPI.PORT, clientId=IBAPI.CLIENT_ID)
 
 
 def fetch_stock_details(stock: str):

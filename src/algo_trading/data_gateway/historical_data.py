@@ -6,12 +6,13 @@ from bs4 import BeautifulSoup as bs
 import numpy as np
 import pandas as pd
 
-from constants import HOST, PORT, CLIENT_ID
+from cloud.storage import upload_blob
+from constants import IBAPI, CloudStorage
 
 
 logging.info('Connecting to broker')
 ib = IB()
-ib.connect(HOST, PORT, clientId=CLIENT_ID)
+ib.connect(IBAPI.HOST, IBAPI.PORT, clientId=IBAPI.CLIENT_ID)
 
 
 def historical_data(stock: str):
@@ -37,7 +38,13 @@ def historical_data(stock: str):
     logging.warning('Is this the best method for persistence?')
     if df is None:
         return None
-    df.to_csv(f'historical_data/{stock.symbol}.csv')
+    file_name = f"{stock.symbol}.csv"
+    df.to_csv(f'historical_data/{file_name}')
+    upload_blob(
+        CloudStorage.BUCKET_NAME,
+        f'historical_data/{file_name}',
+        file_name
+    )
 
 
 def get_historical_data():
