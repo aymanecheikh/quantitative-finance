@@ -2,12 +2,12 @@ from google.cloud import aiplatform
 from kfp import compiler
 from .pipeline import sma_market_data_pipeline
 
-from constants import MLModels as mlm
+from constants import MLModels as mlm, SMALinearRegression as sma_lr
 
 
 compiler.Compiler().compile(
     pipeline_func=sma_market_data_pipeline,
-    package_path=mlm.PACKAGE_PATH
+    package_path=sma_lr.PACKAGE_PATH
 )
 
 
@@ -18,8 +18,8 @@ def main():
     )
 
     pipeline_job = aiplatform.PipelineJob(
-        display_name=mlm.SMA_LINEAR_REGRESSION_MODEL,
-        template_path=mlm.PACKAGE_PATH,
+        display_name=sma_lr.SMA_LINEAR_REGRESSION_MODEL,
+        template_path=sma_lr.PACKAGE_PATH,
         pipeline_root=mlm.BUCKET_ROOT,
         parameter_values={
             "project": mlm.PROJECT,

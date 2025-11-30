@@ -3,12 +3,12 @@ from .components.preprocessing import preprocess_data
 from .components.training import train_model
 from .components.evaluation import evaluate_model
 from .components.register import register_model
-from constants import MLModels as mlm
+from constants import SMALinearRegression as sma_lr
 
 
 @pipeline(
-    name=mlm.SMA_LINEAR_REGRESSION_MODEL,
-    pipeline_root=mlm.BUCKET_ROOT
+    name=sma_lr.SMA_LINEAR_REGRESSION_MODEL,
+    pipeline_root=sma_lr.BUCKET_ROOT
 )
 def sma_market_data_pipeline(
     project: str,

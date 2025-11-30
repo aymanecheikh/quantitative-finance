@@ -16,8 +16,6 @@ class IBAPI:
 class MLModels:
     PROJECT: Final = "quantitative-finance-479721"
     REGION: Final = "europe-west2"
-    SMA_LINEAR_REGRESSION_MODEL: Final = "sma-linear-regression"
-    PACKAGE_PATH: Final = f"{SMA_LINEAR_REGRESSION_MODEL.replace('-', '_')}.json"
     BUCKET_NAME: Final = "historical-market-data"
     BUCKET_ROOT: Final = f"gs://{BUCKET_NAME}/sma-market-data-pipeline"
     DATA_FOLDER: Final = "raw-data"
@@ -26,6 +24,12 @@ class MLModels:
     )
     BASE_IMAGE: Final = "us-docker.pkg.dev/deeplearning-platform-release/gcr.io/sklearn-cpu"
     SERVING_CONTAINER_IMAGE: Final = "europe-docker.pkg.dev/vertex-ai/training/sklearn-cpu.1-6:latest"
+
+
+class SMALinearRegression:
+    SMA_LINEAR_REGRESSION_MODEL: Final = "sma-linear-regression"
+    PACKAGE_PATH: Final = f"{SMA_LINEAR_REGRESSION_MODEL.replace('-', '_')}.json"
+    BUCKET_ROOT: Final = f"gs://{MLModels.BUCKET_NAME}/sma-market-data-pipeline"
 
 
 class Fundamentals(Enum):
